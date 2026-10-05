@@ -13,8 +13,15 @@ connectDB();
 const app = express();
 
 // ── Middleware ────────────────────────────────────────────────────────────────
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.CLIENT_URL,
+]
+  .filter(Boolean)
+  .map((origin) => origin.replace(/\/+$/, ''));
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: allowedOrigins,
   credentials: true,
 }));
 

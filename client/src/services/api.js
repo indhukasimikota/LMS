@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// Base axios instance — proxied to http://localhost:5000 via vite.config.js
+// Base axios instance — configured per deployment with VITE_API_URL.
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
